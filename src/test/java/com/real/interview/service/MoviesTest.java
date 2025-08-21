@@ -51,7 +51,7 @@ public class MoviesTest {
     @Test
     void get_movie_when_called_delete_method() {
         Movie movie = new Movie(1L, "test", "2025");
-        Mockito.when(moviesRepository.findById(1L)).thenReturn(Optional.of(movie));
+        Mockito.when(moviesRepository.existsById(1L)).thenReturn(Boolean.TRUE);
         Mockito.doNothing().when(moviesRepository).deleteById(1L);
         movieService.deleteMovies(1L);
         Mockito.verify(moviesRepository, Mockito.atLeastOnce()).deleteById(1L);

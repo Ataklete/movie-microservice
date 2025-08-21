@@ -44,7 +44,7 @@ public class MoviesController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteMovies(@PathVariable  Long id) {
-        movieService.deleteMovies(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Record deleted successfully");
+        String deletedMovies = movieService.deleteMovies(id);
+        return ResponseEntity.status(HttpStatus.OK).body(deletedMovies);
     }
 }
