@@ -46,7 +46,12 @@ class MoviesControllerTest {
     }
 
     @Test
-    void getMoviesByTitleAndYear() {
+    void getMoviesByTitleAndYear() throws Exception {
+        Mockito.when(movieService.getByTitleAndYear("test", "2025")).thenReturn(new Movie(1L,"test", "2025"));
+        mvc.perform(MockMvcRequestBuilders.get("/movie/{title}/{releaseYear}", "test", "2025"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title ").value("test"))
+                .andExpect(jsonPath("$.releaseYear ").value("2025"));
     }
 
     @Test
